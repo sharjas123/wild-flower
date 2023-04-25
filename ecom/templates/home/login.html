@@ -1,0 +1,54 @@
+{% extends 'home/index.html' %}
+{% block banner %}
+{% endblock banner %}
+
+{% block contents %}
+    <!--================login_part Area =================-->
+    <section class="login_part padding_top" >
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6" >
+                    <div class="login_part_text text-center" style="background-image: url('https://wallpaperaccess.com/full/1900851.png'); width:100%;height:100%;">
+                        <div class="login_part_text_iner">
+                            <h2>Not Registered Yet! ?</h2>
+                            <p>Just Register to Start Wild Hunt on Gent's New Collections</p>
+                            <a href="{% url 'register' %}" class="btn_3">Create an Account</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome to <span style="color:grey;">Wild Flower</span> <br>
+                                </h3>
+                            <form class="row contact_form" action="{% url 'login' %}" method="post" >
+                                {% csrf_token %}
+
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" class="form-control" id="name" name="username" value=""
+                                        placeholder="Enter your email" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password" name="password" value=""
+                                        placeholder="Password" required>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="btn_3"style="background-color:grey; border: 2px solid grey;">
+                                        log in
+                                    </button>
+                                    {% comment %} <a class="lost_pass" href="{% url 'forgotpass' %}">forgot password?</a> {% endcomment %}
+                                    {% comment %} <a class="lost_pass" href="">forgot password?</a> {% endcomment %}
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
+
+{% endblock contents %}
+
+

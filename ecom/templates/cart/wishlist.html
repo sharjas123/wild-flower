@@ -1,0 +1,109 @@
+{% extends 'home/index.html' %}
+
+{% block banner %}
+<section class="breadcrumb breadcrumb_bg"style="background-image: url('https://cdn.shopify.com/s/files/1/0536/3594/0515/articles/blog-banner.jpg?v=1654067107'); width:100%;height:60%;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2 class="" style="color:red">WishList</h2>
+              <p class="text-white ">Home <span>-</span>Your Wishlist Products</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock banner %}
+{% load static %}
+
+
+{% block contents %}
+
+<section class="cart_area padding_top" >
+    <center>
+       
+    </center>
+    <div class="container">
+        {%if not witems%}
+            <h2 class="text-center text-danger">Your wish list is empty</h2>
+            <div class="text-center">
+                <a href="{%url 'userproduct' 0 %}">Continue shopping..</a>
+            </div>
+        {%else%}
+
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr style="height:2px;">
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for item in witems%}
+                    <tr>
+                    <td>
+                    <div class="media">
+                        <div class="d-flex">
+                            <img style="height:100px;width:90px"  src="{{item.product.productimage_set.first.images.url}}" alt="">
+                        </div>
+                        <div class="media-body">
+                            <p>{{item.product.name}}</p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <h5>${{item.product.price}}</h5>
+                </td>
+                <td class="text-right">
+                    {% if item.product.stock > 0 %}
+                        <a href="{% url 'add_to_cart' item.product.id %}"><i class="fas fa-cart-plus"></i></a>
+                    {%else%}
+                        <a> Currently, Out of Stock </a>
+                    {%endif%}
+
+                </td>
+                <td class="text-right">
+                    <a href="{% url 'remove_from_wishlist' item.product.id %}" onclick="return confirm('Are You sure?')"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </div>
+
+            </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+        {%endif%}
+    </div>
+</section>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    {% comment %} <script>
+        alertify.set('notifier','position', 'top-right');
+        {% for msg in messages %}
+            alertify.success('{{ msg }}');
+        {% endfor %}
+        
+    </script> {% endcomment %}
+
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault(); // prevent the link from redirecting immediately
+            alertify.confirm('Message', 'Are You Sure Want to Delete This', function(){
+                window.location.href = event.target.href; // redirect to the delete URL
+            }, function(){ 
+                alertify.error('Cancel')
+            });
+       }
+</script>
+
+{% endblock contents %}
+
+

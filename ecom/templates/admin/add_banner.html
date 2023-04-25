@@ -1,0 +1,30 @@
+{% extends 'admin/admin_dash.html' %}
+
+{% block main %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 2px solid orange;">Add Banner</h5>
+        <div class="container-fluid">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-sm-12">
+                     
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label><strong>Banner Pic</strong></label>
+                                <input type="file" name="image" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

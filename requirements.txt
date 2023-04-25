@@ -1,0 +1,8 @@
+razorpay
+django
+pyotp
+psycopg2
+pillow
+django-autoslug
+whitenoise
+django-environ
