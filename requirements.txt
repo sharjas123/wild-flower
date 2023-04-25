@@ -1,7 +1,7 @@
 razorpay
 django
 pyotp
-psycopg2
+psycopg2-binary
 pillow
 django-autoslug
 whitenoise
